@@ -2,7 +2,7 @@
   'use strict';
   angular.module('swApp')
     .factory('dataservice', dataservice)
-  function dataservice($http) {
+  function dataservice($http, $q) {
     var baseUrl = 'http://api.wunderground.com/';
     var apiKey = 'api/6397708116b30634/'
     var service = {
@@ -15,11 +15,27 @@
 
     
     function getForecast(type, lang, lat, lon) {
-      var coords = lat.toFixed(1) + ',' + lon.toFixed(1);
-      console.log(coords);
-      var url = baseUrl + apiKey + type + '/' + 'lang:' + lang + '/q/' + coords + '.json';
-      // console.log(url);
-      return $http.get(url);
+      var coords = '';
+      var url = '';
+      
+      if (lat && lon) {
+        coords = lat.toFixed(1) + ',' + lon.toFixed(1);
+      } else {
+        coords = 'autoip';
+      }
+      
+      url = baseUrl + apiKey + type + '/' + 'lang:' + lang + '/q/' + coords + '.json';
+      return $http.get(url).then(successResp, errorResp);
+      
+      function successResp(data) {
+        return data;
+      }
+      
+      function errorResp(error) {
+        return $q(function (resolve, reject) {
+          return reject(error);
+        })
+      }
     }
   }
 })();
