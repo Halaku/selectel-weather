@@ -1,7 +1,6 @@
 (function() {
   'use strict';
   angular.module('swApp', [
-    
+    'ngAutocomplete'
   ]);
-  console.log('INIT');
 })();

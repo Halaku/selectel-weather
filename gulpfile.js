@@ -72,6 +72,7 @@ gulp.task('js', function() {
 gulp.task('jslibs', function() {
   gulp.src([
       'bower_components/angular/angular.js',
+      'bower_components/ngAutocomplete/src/ngAutocomplete.js',
       // 'bower_components/angular-ui-router/release/angular-ui-router.js',
       // 'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       // 'bower_components/angular-file-upload/dist/angular-file-upload.js',

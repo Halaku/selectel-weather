@@ -1,13 +1,17 @@
 <!doctype html>
-<html lang="ru-RU">
+<html lang="ru-RU" ng-app="swApp" ng-controller="mainCtrl as mc">
 <head>
   <meta charset="UTF-8">
-  <title>Selectel weather app</title>
+  <title>Selectel Weather App</title>
   <link rel="stylesheet" href="vendor.css">
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
-<h2 class="init">INIT</h2>
+<h2 class="init" ng-bind="mc.init"></h2>
+<input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="mc.city" details="mc.cityDetails" options="mc.searchOptions"/>
+{{mc.cityLng}} longitutde {{mc.cityLat}} latitude
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+<button ng-click="mc.sd()">showinfo</button>
 <script src="libs.js"></script>
 <script src="app.js"></script>
 </body>
