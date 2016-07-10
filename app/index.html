@@ -9,7 +9,7 @@
 <body>
 <h2 class="init" ng-bind="mc.init"></h2>
 <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="mc.city" details="mc.cityDetails" options="mc.searchOptions"/>
-{{mc.cityLng}} longitutde {{mc.cityLat}} latitude
+{{mc.cityLat}} latitude {{mc.cityLng}} longitutde
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <button ng-click="mc.sd()">showinfo</button>
 <script src="libs.js"></script>
