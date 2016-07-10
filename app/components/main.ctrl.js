@@ -20,23 +20,25 @@
     vm.getForecast = getForecast;
 
     function getForecast() {
-      console.log('клац');
       if (vm.cityDetails.geometry) {
         vm.cityLat = vm.cityDetails.geometry.location.lat();
         vm.cityLng = vm.cityDetails.geometry.location.lng();
+      } 
+      
+      if (!vm.city) {
+        vm.city = 'По вашему местоположению'
       }
 
-      dataservice.getForecast('forecast10day', 'RU', vm.cityLat)
+      dataservice.getForecast('forecast10day', 'RU', vm.cityLat, vm.cityLng)
         .then(successAns, errorAns);
 
       function successAns(resp) {
         vm.forecast = resp.data.forecast.simpleforecast.forecastday;
         vm.error = '';
-        console.log(vm.forecast);
       }
 
       function errorAns() {
-        vm.error = 'О нет! Запрос заблудился! Возможно ему сейчас скучно и одиноко, мы сделаем всё, чтобы он нашёл свою маму!'
+        vm.error = 'О нет! Запрос заблудился! Возможно ему сейчас скучно и одиноко, но мы сделаем всё, чтобы он нашёл свою маму!'
       }
     }
   }
