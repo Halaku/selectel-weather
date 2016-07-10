@@ -33,12 +33,12 @@ body {
   margin: 15px;
   display: inline-block;
   width: 300px;
-  background: linear-gradient(to bottom, rgba(176, 246, 255, 0.15) 0%, rgba(135, 200, 214, 0.20) 73%, rgba(135, 200, 214, 0.40) 100%);
-  border: 1px solid black;
+  border: 1px solid #A9A9A9;
+  background-color: #fff;
 
   &__date {
     padding: 10px 0;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #A9A9A9;
 
     &_name {
       font-size: 30px;
