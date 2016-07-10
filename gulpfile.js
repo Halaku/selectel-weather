@@ -5,15 +5,15 @@ var browserSync = require('browser-sync');
 var gulp = require('gulp');
 var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
-var gulpif = require('gulp-if');
+// var gulpif = require('gulp-if');
 var imagemin = require('gulp-imagemin');
-var jade = require('gulp-jade');
+// var jade = require('gulp-jade');
 var ngAnnotate = require('gulp-ng-annotate');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
-var spritesmith = require('gulp.spritesmith');
+// var spritesmith = require('gulp.spritesmith');
 
 // gulp.task('html', function() {
 //   var YOUR_LOCALS = {};
