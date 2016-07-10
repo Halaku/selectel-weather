@@ -47,7 +47,7 @@ gulp.task('css', function() {
 gulp.task('csslibs', function() {
   gulp.src([
       'bower_components/angular/angular-csp.css',
-      'bower_components/bootstrap/dist/css/bootstrap.css',
+      // 'bower_components/bootstrap/dist/css/bootstrap.css',
       // 'bower_components/angular-bootstrap/ui-bootstrap-csp.css',
       // 'bower_components/angular-bootstrap/ui-bootstrap-csp.css'
     ])
@@ -83,15 +83,15 @@ gulp.task('jslibs', function() {
     .pipe(gulp.dest('dist'));
 });
 
-// gulp.task('images', function() {
-//   return gulp.src('builds/dev/app/img/*.*')
-//     .pipe(imagemin({
-//       progressive: true,
-//       interlaced: true
-//     }))
-//     .pipe(gulp.dest('builds/dev/img/'));
-//
-// });
+gulp.task('images', function() {
+  return gulp.src('app/assets/img/*.*')
+    .pipe(imagemin({
+      progressive: true,
+      interlaced: true
+    }))
+    .pipe(gulp.dest('dist/img/'));
+
+});
 
 // gulp.task('sprite', function() {
 //   var spriteData = gulp.src('builds/dev/app/img/sprite/*.png')
@@ -145,7 +145,7 @@ gulp.task('build', [
   'csslibs',
   'js',
   'jslibs',
-  // 'images',
+  'images',
   // 'fonts'
 ]);
 

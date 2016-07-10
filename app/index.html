@@ -6,85 +6,89 @@
   <link rel="stylesheet" href="vendor.css">
   <link rel="stylesheet" href="main.css">
 </head>
-<body>
-<h2 class="init" ng-bind="mc.init"></h2>
-<input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="mc.city" details="mc.cityDetails"
-       options="mc.searchOptions"/>
-{{mc.cityLat}} latitude {{mc.cityLng}} longitutde
-<button ng-click="mc.getForecast()">showinfo</button>
-<p ng-if="mc.error" ng-bind="mc.error"></p>
-<div class="day" ng-if="!mc.error && mc.forecast[0]" ng-repeat="day in mc.forecast">
-  <div class="day__date">
-    <span>
-      {{day.date.weekday}}
-    </span>
-    <span>
-      {{day.date.day}}
-    </span>
-    <span>
-      {{day.date.monthname}}
-    </span>
-  </div>
+<body ng-cloak>
+<div class="search">
+  <input type="text"
+         id="Autocomplete"
+         class="search__input"
+         ng-autocomplete
+         ng-model="mc.city"
+         details="mc.cityDetails"
+         options="mc.searchOptions"
+  />
+  <button ng-click="mc.getForecast()" class="search__button">Погода</button>
+</div>
 
-  <div class="day__forecast">
-    <div class="day__forecast_icon">
-      <img ng-src="{{day.icon_url}}" alt="forecast icon">
+<!--{{mc.cityLat}} latitude {{mc.cityLng}} longitutde-->
+<p class="req-error" ng-if="mc.error" ng-bind="mc.error"></p>
+<div class="forecast">
+
+    <div class="day" ng-if="!mc.error && mc.forecast[0]" ng-repeat="day in mc.forecast">
+      <div class="day__date">
+        <div class="day__date_name center">
+          {{day.date.weekday}}
+        </div>
+        <div class="day__date_number center">
+          {{day.date.day}}
+        </div>
+        <div class="day__date_month center">
+          {{day.date.monthname}}
+        </div>
+      </div>
+
+      <div class="day__forecast">
+        <div class="day__forecast_icon">
+          <img ng-src="{{day.icon_url}}" alt="forecast icon" class="day__forecast_icon-img">
+        </div>
+
+        <div class="day__forecast_condition">
+          {{day.conditions}}
+        </div>
+
+        <div class="day__forecast_val">
+          <div class="left">
+            <div class="temp_val">{{day.high.celsius}}&deg C</div>
+            <div class="temp_dir">максимум</div>
+          </div>
+          <div class="right">
+            <div class="temp_val">{{day.low.celsius}}&deg C</div>
+            <div class="temp_dir">минимум</div>
+          </div>
+        </div>
+
+        <div class="day__forecast_val">
+          <div class="left">
+            Ветер
+          </div>
+          <div class="right">
+            {{day.avewind.dir}} {{day.avewind.kph}} км/ч
+          </div>
+        </div>
+
+        <div class="day__forecast_val">
+          <div class="left">
+            Влажность
+          </div>
+          <div class="right">
+            {{day.avehumidity}}%
+          </div>
+        </div>
+
+        <div class="day__forecast_val">
+          <div class="left">
+            Осадки
+          </div>
+          <div class="right" ng-if="!day.snow_allday.cm">
+            {{day.qpf_allday.mm}}мм
+          </div>
+          <div class="right" ng-if="day.snow_allday.cm">
+            {{day.snow_allday.cm}}см
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="day__forecast_condition">
-      {{day.conditions}}
-    </div>
-
-    <div class="day__forecast_val">
-      <div class="left">
-        <span class="temp_val">{{day.high.celsius}}&deg C</span>
-        <span class="temp_dir">максимум</span>
-      </div>
-      <div class="right">
-        <span class="temp_val">{{day.low.celsius}}&deg C</span>
-        <span class="temp_dir">минимум</span>
-      </div>
-    </div>
-
-    <div class="day__forecast_val">
-      <div class="left">
-        Ветер
-      </div>
-      <div class="right">
-        {{day.avewind.dir}} {{day.avewind.kph}} км/ч
-      </div>
-    </div>
-
-    <div class="day__forecast_val">
-      <div class="left">
-        Влажность
-      </div>
-      <div class="right">
-        {{day.avehumidity}}%
-      </div>
-    </div>
-
-    <div class="day__forecast_val">
-      <div class="left">
-        Осадки
-      </div>
-      <div class="right" ng-if="!day.snow_allday.cm">
-        {{day.qpf_allday.mm}}мм
-      </div>
-      <div class="right" ng-if="day.snow_allday.cm">
-        {{day.snow_allday.cm}}см
-      </div>
-    </div>
-
-    <div class="day__forecast_val">
-      <div class="left">
-
-      </div>
-      <div class="right">
-
-      </div>
-    </div>
-  </div>
 </div>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script src="libs.js"></script>
